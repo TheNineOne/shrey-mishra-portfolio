@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import { Github, ExternalLink, Code2, Users, Database, Zap, Sparkles, Server } from "lucide-react";
+import Link from "next/link";
 
 const projectsList = [
     {
@@ -14,7 +15,8 @@ const projectsList = [
         icon: Sparkles,
         image: "https://images.unsplash.com/photo-1470225620780-dba8ba36b745?auto=format&fit=crop&q=80&w=800",
         github: "https://github.com/TheNineOne",
-        live: "/nineone"
+        live: "/nineone",
+        internal: true
     },
     {
         title: "CodeSync",
@@ -26,7 +28,8 @@ const projectsList = [
         icon: Users,
         image: "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?auto=format&fit=crop&q=80&w=800",
         github: "https://github.com/TheNineOne",
-        live: "#"
+        live: "#",
+        internal: false
     },
     {
         title: "Spring Boot Web App",
@@ -38,7 +41,8 @@ const projectsList = [
         icon: Server,
         image: "https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&q=80&w=800",
         github: "https://github.com/TheNineOne",
-        live: "#"
+        live: "#",
+        internal: false
     },
     {
         title: "Household Cost Estimator",
@@ -50,7 +54,8 @@ const projectsList = [
         icon: Database,
         image: "https://images.unsplash.com/photo-1507925921958-8a62f3d1a50d?auto=format&fit=crop&q=80&w=800",
         github: "https://github.com/TheNineOne/Housewifetasks_project",
-        live: "https://housewifetasks.onrender.com/"
+        live: "https://housewifetasks.onrender.com/",
+        internal: false
     }
 ];
 
@@ -81,13 +86,23 @@ export default function Projects() {
                     >
                         {/* Image Side */}
                         <div className="lg:w-[40%] relative overflow-hidden h-64 lg:h-auto">
-                            <img
-                                src={project.image}
-                                alt={project.title}
-                                className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 grayscale-[0.5] group-hover:grayscale-0"
-                            />
-                            <div className="absolute inset-0 bg-primary/10 mix-blend-multiply group-hover:opacity-0 transition-opacity" />
-                            <div className="absolute top-6 left-6 p-3 bg-white/90 dark:bg-black/90 backdrop-blur-md rounded-2xl shadow-xl">
+                            {project.internal ? (
+                                <Link href={project.live} className="block w-full h-full">
+                                    <img
+                                        src={project.image}
+                                        alt={project.title}
+                                        className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 grayscale-[0.5] group-hover:grayscale-0"
+                                    />
+                                </Link>
+                            ) : (
+                                <img
+                                    src={project.image}
+                                    alt={project.title}
+                                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 grayscale-[0.5] group-hover:grayscale-0"
+                                />
+                            )}
+                            <div className="absolute inset-0 bg-primary/10 mix-blend-multiply group-hover:opacity-0 transition-opacity pointer-events-none" />
+                            <div className="absolute top-6 left-6 p-3 bg-white/90 dark:bg-black/90 backdrop-blur-md rounded-2xl shadow-xl z-20">
                                 <project.icon className="w-6 h-6 text-primary" />
                             </div>
                         </div>
@@ -97,7 +112,13 @@ export default function Projects() {
                             <div className="space-y-4">
                                 <div className="space-y-1">
                                     <h4 className="text-primary font-mono text-[10px] font-bold uppercase tracking-widest">{project.subtitle}</h4>
-                                    <h3 className="text-3xl font-display font-black tracking-tight">{project.title}</h3>
+                                    {project.internal ? (
+                                        <Link href={project.live} className="block group/link">
+                                            <h3 className="text-3xl font-display font-black tracking-tight group-hover/link:text-primary transition-colors">{project.title}</h3>
+                                        </Link>
+                                    ) : (
+                                        <h3 className="text-3xl font-display font-black tracking-tight">{project.title}</h3>
+                                    )}
                                 </div>
                                 <p className="text-secondary/70 dark:text-foreground/70 leading-relaxed font-sans">
                                     {project.description}
@@ -124,9 +145,15 @@ export default function Projects() {
                                         <Github className="w-4 h-4" /> Code
                                     </a>
                                     {project.live !== "#" && (
-                                        <a href={project.live} target="_blank" className="flex items-center gap-2 text-xs font-bold uppercase tracking-widest hover:text-primary transition-colors">
-                                            <ExternalLink className="w-4 h-4" /> Live Demo
-                                        </a>
+                                        project.internal ? (
+                                            <Link href={project.live} className="flex items-center gap-2 text-xs font-bold uppercase tracking-widest hover:text-primary transition-colors">
+                                                <ExternalLink className="w-4 h-4" /> Live Demo
+                                            </Link>
+                                        ) : (
+                                            <a href={project.live} target="_blank" className="flex items-center gap-2 text-xs font-bold uppercase tracking-widest hover:text-primary transition-colors">
+                                                <ExternalLink className="w-4 h-4" /> Live Demo
+                                            </a>
+                                        )
                                     )}
                                 </div>
                             </div>
