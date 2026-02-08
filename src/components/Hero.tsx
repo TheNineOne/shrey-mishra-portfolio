@@ -64,7 +64,7 @@ export default function Hero() {
                     </motion.div>
 
                     <h1 className="text-4xl md:text-6xl font-display font-black text-secondary dark:text-white leading-[1.1]">
-                        Hi, I&apos;m <span className="text-primary">Shrey Mishra</span> <span className="animate-wave inline-block">👋</span>
+                        Hi, I&apos;m <span className="text-primary">Shrey Mishra</span>
                     </h1>
 
                     <h2 className="text-2xl md:text-3xl font-mono text-secondary/80 dark:text-foreground/80 h-10">
