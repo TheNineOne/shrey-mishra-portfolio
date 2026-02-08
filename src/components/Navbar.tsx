@@ -2,7 +2,6 @@
 
 import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
-import { ThemeToggle } from "./ThemeToggle";
 import { cn } from "@/lib/utils";
 import { useEffect, useState } from "react";
 import { Menu, X } from "lucide-react";
@@ -79,8 +78,6 @@ export default function Navbar() {
                     </ul>
 
                     <div className="flex items-center gap-2">
-                        <ThemeToggle />
-
                         {/* Mobile Menu Toggle */}
                         <button
                             className="md:hidden p-2 text-secondary dark:text-white z-[70]"
