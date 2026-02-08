@@ -7,10 +7,26 @@ import { useState } from "react";
 export default function Contact() {
     const [isSubmitted, setIsSubmitted] = useState(false);
 
-    const handleSubmit = (e: React.FormEvent) => {
+    const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        setIsSubmitted(true);
-        setTimeout(() => setIsSubmitted(false), 5000);
+        const formData = new FormData(e.currentTarget);
+
+        // Using Web3Forms for real email delivery (Free & No Backend required)
+        formData.append("access_key", "c8f8b89e-8c8e-4b8e-9e8c-8e8c8e8c8e8c"); // Dummy key, user needs to replace
+
+        try {
+            const response = await fetch("https://api.web3forms.com/submit", {
+                method: "POST",
+                body: formData
+            });
+
+            if (response.ok) {
+                setIsSubmitted(true);
+                setTimeout(() => setIsSubmitted(false), 5000);
+            }
+        } catch (error) {
+            console.error("Error sending email:", error);
+        }
     };
 
     return (
@@ -80,23 +96,24 @@ export default function Contact() {
                         </motion.div>
                     ) : (
                         <form onSubmit={handleSubmit} className="space-y-6">
+                            <input type="hidden" name="apikey" value="YOUR_ACCESS_KEY_HERE" />
                             <div className="grid md:grid-cols-2 gap-6">
                                 <div className="space-y-2">
                                     <label className="text-xs font-mono font-bold uppercase tracking-widest opacity-40 px-1">Your Name</label>
-                                    <input required type="text" placeholder="John Doe" className="w-full p-4 bg-background border border-border rounded-2xl outline-none focus:border-primary focus:ring-4 focus:ring-primary/5 transition-all font-sans" />
+                                    <input required type="text" name="name" placeholder="Shrey Mishra" className="w-full p-4 bg-background border border-border rounded-2xl outline-none focus:border-primary focus:ring-4 focus:ring-primary/5 transition-all font-sans" />
                                 </div>
                                 <div className="space-y-2">
                                     <label className="text-xs font-mono font-bold uppercase tracking-widest opacity-40 px-1">Your Email</label>
-                                    <input required type="email" placeholder="john@example.com" className="w-full p-4 bg-background border border-border rounded-2xl outline-none focus:border-primary focus:ring-4 focus:ring-primary/5 transition-all font-sans" />
+                                    <input required type="email" name="email" placeholder="shreymishra589@gmail.com" className="w-full p-4 bg-background border border-border rounded-2xl outline-none focus:border-primary focus:ring-4 focus:ring-primary/5 transition-all font-sans" />
                                 </div>
                             </div>
                             <div className="space-y-2">
                                 <label className="text-xs font-mono font-bold uppercase tracking-widest opacity-40 px-1">Subject</label>
-                                <input required type="text" placeholder="Project Inquiry / Job Opportunity" className="w-full p-4 bg-background border border-border rounded-2xl outline-none focus:border-primary focus:ring-4 focus:ring-primary/5 transition-all font-sans" />
+                                <input required type="text" name="subject" placeholder="Project Inquiry / Job Opportunity" className="w-full p-4 bg-background border border-border rounded-2xl outline-none focus:border-primary focus:ring-4 focus:ring-primary/5 transition-all font-sans" />
                             </div>
                             <div className="space-y-2">
                                 <label className="text-xs font-mono font-bold uppercase tracking-widest opacity-40 px-1">Message</label>
-                                <textarea required rows={5} placeholder="Hi Shrey, I'd like to talk about..." className="w-full p-4 bg-background border border-border rounded-2xl outline-none focus:border-primary focus:ring-4 focus:ring-primary/5 transition-all font-sans resize-none" />
+                                <textarea required name="message" rows={5} placeholder="Hi Shrey, I'd like to talk about..." className="w-full p-4 bg-background border border-border rounded-2xl outline-none focus:border-primary focus:ring-4 focus:ring-primary/5 transition-all font-sans resize-none" />
                             </div>
                             <button type="submit" className="w-full btn-primary py-5 rounded-2xl text-base uppercase tracking-[0.2em] font-black flex items-center justify-center gap-3">
                                 Send Message <Send className="w-4 h-4" />
