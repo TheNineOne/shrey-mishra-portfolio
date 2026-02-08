@@ -12,7 +12,7 @@ export default function Contact() {
         const formData = new FormData(e.currentTarget);
 
         // Using Web3Forms for real email delivery (Free & No Backend required)
-        formData.append("access_key", "c8f8b89e-8c8e-4b8e-9e8c-8e8c8e8c8e8c"); // Dummy key, user needs to replace
+        formData.append("access_key", "2df9dc17-246a-4373-92ea-585282fe9279"); // Dummy key, user needs to replace
 
         try {
             const response = await fetch("https://api.web3forms.com/submit", {
@@ -96,7 +96,7 @@ export default function Contact() {
                         </motion.div>
                     ) : (
                         <form onSubmit={handleSubmit} className="space-y-6">
-                            <input type="hidden" name="apikey" value="YOUR_ACCESS_KEY_HERE" />
+                            <input type="hidden" name="apikey" value="2df9dc17-246a-4373-92ea-585282fe9279" />
                             <div className="grid md:grid-cols-2 gap-6">
                                 <div className="space-y-2">
                                     <label className="text-xs font-mono font-bold uppercase tracking-widest opacity-40 px-1">Your Name</label>
