@@ -10,6 +10,11 @@ export default function Contact() {
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         const formData = new FormData(e.currentTarget);
+        const name = formData.get("name");
+
+        // Dynamically set the subject as requested
+        formData.append("subject", `${name} is trying to reach out from your portfolio`);
+        formData.append("from_name", "Portfolio Contact Form");
 
         // Using Web3Forms for real email delivery (Free & No Backend required)
         formData.append("access_key", "2df9dc17-246a-4373-92ea-585282fe9279"); // Dummy key, user needs to replace
@@ -96,7 +101,6 @@ export default function Contact() {
                         </motion.div>
                     ) : (
                         <form onSubmit={handleSubmit} className="space-y-6">
-                            <input type="hidden" name="apikey" value="2df9dc17-246a-4373-92ea-585282fe9279" />
                             <div className="grid md:grid-cols-2 gap-6">
                                 <div className="space-y-2">
                                     <label className="text-xs font-mono font-bold uppercase tracking-widest opacity-40 px-1">Your Name</label>
@@ -108,8 +112,8 @@ export default function Contact() {
                                 </div>
                             </div>
                             <div className="space-y-2">
-                                <label className="text-xs font-mono font-bold uppercase tracking-widest opacity-40 px-1">Subject</label>
-                                <input required type="text" name="subject" placeholder="Project Inquiry / Job Opportunity" className="w-full p-4 bg-background border border-border rounded-2xl outline-none focus:border-primary focus:ring-4 focus:ring-primary/5 transition-all font-sans" />
+                                <label className="text-xs font-mono font-bold uppercase tracking-widest opacity-40 px-1">Message Subject</label>
+                                <input required type="text" name="user_subject" placeholder="Project Inquiry / Job Opportunity" className="w-full p-4 bg-background border border-border rounded-2xl outline-none focus:border-primary focus:ring-4 focus:ring-primary/5 transition-all font-sans" />
                             </div>
                             <div className="space-y-2">
                                 <label className="text-xs font-mono font-bold uppercase tracking-widest opacity-40 px-1">Message</label>
