@@ -63,7 +63,7 @@ export default function Hero() {
                         Available for Internships
                     </motion.div>
 
-                    <h1 className="text-5xl md:text-7xl font-display font-black text-secondary dark:text-white leading-[1.1]">
+                    <h1 className="text-4xl md:text-6xl font-display font-black text-secondary dark:text-white leading-[1.1]">
                         Hi, I&apos;m <span className="text-primary">Shrey Mishra</span> <span className="animate-wave inline-block">👋</span>
                     </h1>
 

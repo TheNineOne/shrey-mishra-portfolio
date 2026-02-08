@@ -5,6 +5,18 @@ import { Github, ExternalLink, Code2, Users, Database, Zap, Sparkles, Server } f
 
 const projectsList = [
     {
+        title: "NineOne Creative",
+        subtitle: "Standalone Artist Portfolio",
+        description: "A high-performance, cinematic creative space for musical and visual art. Featuring glitch effects, 3D tilt interactions, and background marquees.",
+        tech: ["Next.js 15", "Framer Motion", "Tailwind CSS", "Lucide"],
+        features: ["Glitch Text System", "Custom Animation Engine", "Zero-Lag Performance"],
+        learnings: "Mastered high-impact animation techniques without sacrificing CPU performance by leveraging CSS-only keyframes and hardware acceleration.",
+        icon: Sparkles,
+        image: "https://images.unsplash.com/photo-1470225620780-dba8ba36b745?auto=format&fit=crop&q=80&w=800",
+        github: "https://github.com/TheNineOne",
+        live: "/nineone"
+    },
+    {
         title: "CodeSync",
         subtitle: "Real-time Collaborative Code Editor",
         description: "A synchronized platform allowing developers to code together in real-time. Built to handle low-latency multi-user interaction.",
