@@ -1,104 +1,99 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { GraduationCap, Code2, Database, Layout, Terminal, Zap, Search, Globe } from "lucide-react";
-
-const skillCards = [
-    { name: "Java & Spring", icon: Database, desc: "Building scalable backend architectures." },
-    { name: "REST API Dev", icon: Layout, desc: "Designing robust communication layers." },
-    { name: "Scalable Apps", icon: Globe, desc: "Ensuring high availability and performance." }
-];
+import { User, Code, Server, BookOpen, GraduationCap } from "lucide-react";
 
 export default function About() {
     return (
-        <section id="about" className="section-padding">
+        <section id="about" className="section-padding relative">
             <div className="section-title">
                 <motion.div
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
+                    className="flex flex-col items-center text-center"
                 >
-                    <h2>About</h2>
-                    <p className="text-secondary/60 dark:text-foreground/60">Exploring my background and specialized service areas.</p>
+                    <span className="text-primary font-mono text-xs font-bold tracking-[0.3em] uppercase mb-2">My Background</span>
+                    <h2 className="font-display text-4xl font-black">Professional Journey</h2>
                 </motion.div>
             </div>
 
-            <div className="flex flex-col lg:flex-row gap-24 items-center py-10">
+            <div className="grid lg:grid-cols-12 gap-12 items-start mt-12">
+                {/* Left side: Value Proposition */}
                 <motion.div
-                    initial={{ opacity: 0, scale: 0.9 }}
-                    whileInView={{ opacity: 1, scale: 1 }}
+                    initial={{ opacity: 0, x: -30 }}
+                    whileInView={{ opacity: 1, x: 0 }}
                     viewport={{ once: true }}
-                    className="lg:w-[30%] space-y-6"
+                    className="lg:col-span-7 space-y-8"
                 >
-                    <div className="relative group">
-                        <div className="absolute inset-0 border-2 border-primary rounded-full -m-4 group-hover:m-[-10px] transition-all duration-500" />
-                        <img
-                            src="/shrey.png"
-                            alt="Shrey Mishra"
-                            className="w-full aspect-square object-cover rounded-full shadow-2xl relative z-10 transition-transform duration-500 group-hover:scale-105"
-                        />
+                    <h3 className="text-2xl font-display font-bold text-secondary dark:text-white leading-tight">
+                        I specialize in <span className="text-primary">Backend Development</span> with a focus on building robust system architectures.
+                    </h3>
+
+                    <div className="space-y-6 text-lg text-secondary/70 dark:text-foreground/70 leading-relaxed font-sans">
+                        <p>
+                            Currently pursuing my <span className="font-bold text-secondary dark:text-white underline decoration-primary decoration-2 underline-offset-4">MCA</span>, I focus on the engine that powers applications. I enjoy building RESTful APIs, working with complex databases, and understanding how modern systems scale.
+                        </p>
+                        <p>
+                            I&apos;ve worked on real-world projects involving <span className="text-secondary dark:text-white font-semibold">JWT Authentication, CRUD operations, and complex business logic</span>. My goal is to write code that isn&apos;t just functional, but maintainable and efficient.
+                        </p>
+                        <p className="font-mono text-sm bg-muted/50 p-4 rounded-xl border border-border italic">
+                            &quot;I am continuously improving my Data Structures, Algorithms, and System Design skills to solve high-impact problems.&quot;
+                        </p>
                     </div>
-                    <div className="text-center pt-8">
-                        <p className="text-2xl font-bold italic signature-font">Shrey Mishra</p>
-                        <p className="text-sm text-secondary/50 italic">Building meaningful digital experiences through creative code.</p>
+
+                    <div className="grid grid-cols-2 gap-6 pt-4">
+                        <div className="flex items-start gap-4">
+                            <GraduationCap className="text-primary w-6 h-6 shrink-0 mt-1" />
+                            <div>
+                                <h4 className="font-bold text-base">Education</h4>
+                                <p className="text-sm opacity-60">MCA Candidate 2024-26</p>
+                            </div>
+                        </div>
+                        <div className="flex items-start gap-4">
+                            <Server className="text-primary w-6 h-6 shrink-0 mt-1" />
+                            <div>
+                                <h4 className="font-bold text-base">Specialization</h4>
+                                <p className="text-sm opacity-60">Java & Spring Boot</p>
+                            </div>
+                        </div>
                     </div>
                 </motion.div>
 
-                <div className="lg:w-[65%] space-y-8">
-                    <motion.h3
-                        initial={{ opacity: 0, x: 20 }}
-                        whileInView={{ opacity: 1, x: 0 }}
+                {/* Right side: Fact Cards */}
+                <div className="lg:col-span-5 grid gap-4">
+                    <motion.div
+                        initial={{ opacity: 0, y: 20 }}
+                        whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
-                        className="text-3xl font-bold text-primary"
+                        transition={{ delay: 0.2 }}
+                        className="p-6 bg-white dark:bg-muted/50 border border-border rounded-2xl group hover:border-primary/30 transition-all shadow-xl shadow-primary/5"
                     >
-                        Hi, I&apos;m Shrey Mishra - a Backend Focused Developer
-                    </motion.h3>
-                    <motion.p
-                        initial={{ opacity: 0, x: 20 }}
-                        whileInView={{ opacity: 1, x: 0 }}
+                        <h4 className="text-primary font-mono text-xs font-bold uppercase tracking-wider mb-3">01. Scalable Solutions</h4>
+                        <p className="text-sm font-medium leading-relaxed">Designing REST APIs with Spring Boot that follow best practices for performance and security.</p>
+                    </motion.div>
+
+                    <motion.div
+                        initial={{ opacity: 0, y: 20 }}
+                        whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
-                        transition={{ delay: 0.1 }}
-                        className="text-lg text-secondary/70 dark:text-foreground/70 leading-relaxed"
+                        transition={{ delay: 0.3 }}
+                        className="p-6 bg-white dark:bg-muted/50 border border-border rounded-2xl group hover:border-primary/30 transition-all shadow-xl shadow-primary/5"
                     >
-                        Motivated IT student with hands-on experience in Java-based application development and web technologies. Passionate about building scalable applications using Spring Boot, REST APIs, and modern frontend frameworks.
-                    </motion.p>
+                        <h4 className="text-primary font-mono text-xs font-bold uppercase tracking-wider mb-3">02. Database Excellence</h4>
+                        <p className="text-sm font-medium leading-relaxed">Working with PostgreSQL and MySQL using JPA/Hibernate for optimized data persistence.</p>
+                    </motion.div>
 
-                    <div className="grid md:grid-cols-3 gap-6 pt-6">
-                        {skillCards.map((skill, i) => (
-                            <motion.div
-                                key={skill.name}
-                                initial={{ opacity: 0, y: 20 }}
-                                whileInView={{ opacity: 1, y: 0 }}
-                                viewport={{ once: true }}
-                                transition={{ delay: i * 0.1 + 0.2 }}
-                                whileHover={{ y: -10, scale: 1.02 }}
-                                className="p-6 bg-muted rounded-xl text-center space-y-3 cursor-default border border-transparent hover:border-primary/20 hover:shadow-xl transition-all duration-300"
-                            >
-                                <div className="w-12 h-12 bg-primary/10 text-primary rounded-lg flex items-center justify-center mx-auto transition-transform group-hover:rotate-12"><skill.icon className="w-6 h-6" /></div>
-                                <h4 className="font-bold uppercase tracking-tight text-sm">{skill.name}</h4>
-                            </motion.div>
-                        ))}
-                    </div>
-
-                    <div className="space-y-6 pt-6">
-                        {[
-                            { year: "2021", text: "Graduated with BCA from PPN College, Kanpur (CGPA 8.11)" },
-                            { year: "2024", text: "Joined CSJMU for Masters in Computer Applications" },
-                            { year: "2025", text: "Software Developer Intern at Humming Byte Technologies" }
-                        ].map((item, i) => (
-                            <motion.div
-                                key={i}
-                                initial={{ opacity: 0, x: 20 }}
-                                whileInView={{ opacity: 1, x: 0 }}
-                                viewport={{ once: true }}
-                                transition={{ delay: i * 0.1 + 0.4 }}
-                                className="flex items-center gap-4 border-l-4 border-primary pl-4 group hover:pl-6 transition-all"
-                            >
-                                <span className="font-bold text-primary">{item.year}</span>
-                                <span className="group-hover:text-primary transition-colors">{item.text}</span>
-                            </motion.div>
-                        ))}
-                    </div>
+                    <motion.div
+                        initial={{ opacity: 0, y: 20 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ delay: 0.4 }}
+                        className="p-6 bg-white dark:bg-muted/50 border border-border rounded-2xl group hover:border-primary/30 transition-all shadow-xl shadow-primary/5"
+                    >
+                        <h4 className="text-primary font-mono text-xs font-bold uppercase tracking-wider mb-3">03. Modern Workflow</h4>
+                        <p className="text-sm font-medium leading-relaxed">Collaborating via Git/GitHub and testing endpoints with Postman for reliable delivery.</p>
+                    </motion.div>
                 </div>
             </div>
         </section>
