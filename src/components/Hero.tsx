@@ -3,6 +3,7 @@
 import { motion } from "framer-motion";
 import { ArrowRight, Github, Linkedin, Mail, Code2, Database, Layout, Zap, Terminal } from "lucide-react";
 import Link from "next/link";
+import Image from "next/image";
 import { useState, useEffect } from "react";
 
 const roles = ["Developer", "Freelancer", "Artist", "Collaborator"];
@@ -101,9 +102,11 @@ export default function Hero() {
                 <div className="absolute top-8 left-8 bottom-0 right-0 bg-primary rounded-[2rem] -z-10" />
 
                 <div className="relative rounded-[2rem] overflow-hidden shadow-2xl bg-white p-0 z-10">
-                    <img
+                    <Image
                         src="/shrey.png"
                         alt="Shrey Mishra"
+                        width={500}
+                        height={500}
                         className="w-full aspect-square object-cover"
                     />
                 </div>
