@@ -3,7 +3,17 @@
 import { motion } from "framer-motion";
 import { GraduationCap, Briefcase } from "lucide-react";
 
-const ResumeItem = ({ title, date, company, items, description, cgpa, i }: any) => (
+interface ResumeItemProps {
+    title: string;
+    date: string;
+    company?: string;
+    items?: string[];
+    description?: string;
+    cgpa?: string;
+    i: number;
+}
+
+const ResumeItem = ({ title, date, company, items, description, cgpa, i }: ResumeItemProps) => (
     <motion.div
         initial={{ opacity: 0, x: -20 }}
         whileInView={{ opacity: 1, x: 0 }}

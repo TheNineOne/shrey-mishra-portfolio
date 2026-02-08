@@ -36,37 +36,23 @@ export default function NineOnePage() {
             {/* 1. HERO ATMOSPHERE (Background) */}
             <motion.div
                 initial={{ scale: 1.1, opacity: 0 }}
-                animate={{ scale: 1, opacity: 0.6 }}
+                animate={{ scale: 1, opacity: 0.5 }}
                 transition={{ duration: 2, ease: "easeOut" }}
-                className="fixed inset-0 z-0 bg-cover bg-center grayscale-0 brightness-[0.4] contrast-125 pointer-events-none"
+                className="fixed inset-0 z-0 bg-cover bg-center grayscale-0 brightness-[0.3] contrast-125 pointer-events-none"
                 style={{ backgroundImage: "url('/nineone-bg.png')" }}
             />
 
-            {/* Dynamic Smoke Effect Layer */}
-            <div className="fixed inset-0 z-[1] pointer-events-none overflow-hidden opacity-50">
-                {[...Array(20)].map((_, i) => (
+            {/* CRAZY LOW-CPU ANIMATION: Background Scrolling Marquee */}
+            <div className="fixed inset-0 z-0 pointer-events-none overflow-hidden opacity-[0.03] select-none flex flex-col justify-around py-10">
+                {[...Array(4)].map((_, i) => (
                     <motion.div
                         key={i}
-                        initial={{
-                            x: (Math.random() * 120 - 10) + "%",
-                            y: "120%",
-                            opacity: 0,
-                            scale: Math.random() * 3 + 1
-                        }}
-                        animate={{
-                            y: "-20%",
-                            opacity: [0, 0.5, 0],
-                            x: ["0%", "20%", "-20%", "10%"], // Horizontal drift
-                            rotate: [0, 180, 360]
-                        }}
-                        transition={{
-                            duration: Math.random() * 8 + 8, // Faster movement
-                            repeat: Infinity,
-                            ease: "easeInOut",
-                            delay: Math.random() * 10
-                        }}
-                        className="absolute w-[500px] h-[500px] bg-white/10 rounded-full blur-[120px]"
-                    />
+                        animate={{ x: i % 2 === 0 ? ["0%", "-50%"] : ["-50%", "0%"] }}
+                        transition={{ duration: 40, repeat: Infinity, ease: "linear" }}
+                        className="text-[25vw] font-black italic whitespace-nowrap leading-none"
+                    >
+                        NINEONE COLLECTIVE NINEONE COLLECTIVE NINEONE COLLECTIVE
+                    </motion.div>
                 ))}
             </div>
 
@@ -75,12 +61,12 @@ export default function NineOnePage() {
 
             <div className="max-w-[1200px] mx-auto px-6 py-20 relative z-10">
                 {/* Header Section */}
-                <header className="flex justify-between items-center mb-24">
+                <header className="flex justify-between items-center mb-20">
                     <Link href="/" className="text-xl font-black group flex items-center gap-2 bg-black/50 backdrop-blur-md p-2 px-4 rounded-full border border-white/10 hover:border-red-600 transition-all">
                         <span className="text-red-600 group-hover:translate-x-[-4px] transition-transform">←</span>
                         BACK TO DEV
                     </Link>
-                    <div className="text-4xl font-black tracking-tighter italic drop-shadow-[0_0_15px_rgba(220,38,38,0.5)]">
+                    <div className="text-4xl font-black tracking-tighter italic drop-shadow-[0_0_15px_rgba(220,38,38,0.5)] glitch-hover" data-text="NINEONE.">
                         NINEONE<span className="text-red-600">.</span>
                     </div>
                 </header>
@@ -93,7 +79,7 @@ export default function NineOnePage() {
                             animate={{ x: 0, opacity: 1, scale: 1 }}
                             transition={{ duration: 1.2, ease: "easeOut" }}
                         >
-                            <h1 className="text-8xl md:text-9xl font-black leading-none uppercase italic stroke-text-red drop-shadow-2xl">
+                            <h1 className="text-8xl md:text-9xl font-black leading-none uppercase italic stroke-text-red drop-shadow-2xl glitch-active" data-text="THE IX ONE">
                                 THE IX ONE
                             </h1>
                         </motion.div>
@@ -123,24 +109,27 @@ export default function NineOnePage() {
                     >
                         <motion.div
                             animate={{
-                                scale: [1, 1.2, 1],
-                                x: [-20, 20, -20],
-                                y: [-20, 20, -20]
+                                scale: [1, 1.3, 1],
+                                opacity: [0.3, 0.6, 0.3]
                             }}
                             transition={{
-                                duration: 8,
+                                duration: 4,
                                 repeat: Infinity,
-                                ease: "linear"
+                                ease: "easeInOut"
                             }}
-                            className="absolute inset-0 bg-red-600/40 blur-[80px] rounded-full"
+                            className="absolute inset-0 bg-red-600 blur-[120px] rounded-full"
                         />
-                        <div className="relative border-2 border-white/10 p-2 rounded-3xl group overflow-hidden shadow-[0_0_50px_rgba(220,38,38,0.2)]">
+                        <motion.div
+                            whileHover={{ rotateY: 15, rotateX: -5, scale: 1.05 }}
+                            style={{ perspective: 1000 }}
+                            className="relative border-2 border-white/10 p-2 rounded-3xl group overflow-hidden shadow-[0_0_50px_rgba(220,38,38,0.2)] transition-all duration-300"
+                        >
                             <img
                                 src="/artist-shrey.png"
                                 alt="NineOne Artist"
-                                className="rounded-2xl grayscale hover:grayscale-0 transition-all duration-1000 aspect-square object-cover"
+                                className="rounded-2xl grayscale hover:grayscale-0 transition-all duration-700 aspect-square object-cover"
                             />
-                        </div>
+                        </motion.div>
                     </motion.div>
                 </div>
 
@@ -179,7 +168,7 @@ export default function NineOnePage() {
 
             <style jsx global>{`
                 .stroke-text-red {
-                    -webkit-text-stroke: 2px #dc2626; /* red-600 */
+                    -webkit-text-stroke: 2px #dc2626;
                     color: transparent;
                 }
                 .stroke-text-red:hover {
@@ -187,7 +176,51 @@ export default function NineOnePage() {
                     text-shadow: 0 0 30px rgba(220, 38, 38, 0.8);
                     transition: 0.4s ease;
                 }
+
+                /* GLITCH EFFECT */
+                .glitch-active, .glitch-hover:hover {
+                    position: relative;
+                }
+                .glitch-active::before, .glitch-active::after,
+                .glitch-hover:hover::before, .glitch-hover:hover::after {
+                    content: attr(data-text);
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    width: 100%;
+                    height: 100%;
+                }
+                .glitch-active::before, .glitch-hover:hover::before {
+                    left: 2px;
+                    text-shadow: -2px 0 #ff00c1;
+                    clip: rect(44px, 450px, 56px, 0);
+                    animation: glitch-anim 5s infinite linear alternate-reverse;
+                }
+                .glitch-active::after, .glitch-hover:hover::after {
+                    left: -2px;
+                    text-shadow: -2px 0 #00fff9;
+                    clip: rect(44px, 450px, 56px, 0);
+                    animation: glitch-anim2 5s infinite linear alternate-reverse;
+                }
+
+                @keyframes glitch-anim {
+                    0% { clip: rect(31px, 9999px, 94px, 0); }
+                    20% { clip: rect(62px, 9999px, 42px, 0); }
+                    40% { clip: rect(16px, 9999px, 78px, 0); }
+                    60% { clip: rect(81px, 9999px, 13px, 0); }
+                    80% { clip: rect(52px, 9999px, 86px, 0); }
+                    100% { clip: rect(11px, 9999px, 33px, 0); }
+                }
+                @keyframes glitch-anim2 {
+                    0% { clip: rect(25px, 9999px, 9px, 0); }
+                    20% { clip: rect(70px, 9999px, 23px, 0); }
+                    40% { clip: rect(5px, 9999px, 56px, 0); }
+                    60% { clip: rect(37px, 9999px, 89px, 0); }
+                    80% { clip: rect(91px, 9999px, 12px, 0); }
+                    100% { clip: rect(48px, 9999px, 67px, 0); }
+                }
             `}</style>
         </div>
     );
 }
+

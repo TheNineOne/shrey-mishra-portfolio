@@ -51,7 +51,7 @@ export default function About() {
                         viewport={{ once: true }}
                         className="text-3xl font-bold text-primary"
                     >
-                        Hi, I'm Shrey Mishra - a Backend Focused Developer
+                        Hi, I&apos;m Shrey Mishra - a Backend Focused Developer
                     </motion.h3>
                     <motion.p
                         initial={{ opacity: 0, x: 20 }}
