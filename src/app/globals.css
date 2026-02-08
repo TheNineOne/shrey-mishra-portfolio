@@ -1,0 +1,170 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-primary: #0563bb;
+  --color-primary-hover: #0678e3;
+  --color-secondary: #45505b;
+  --color-muted: var(--muted);
+  --color-border: var(--border);
+}
+
+@layer base {
+  :root {
+    --background: #ffffff;
+    --foreground: #272829;
+    --muted: #f2f3f5;
+    --border: #d8d8d8;
+  }
+
+  .dark {
+    --background: #040b14;
+    /* Deep, premium navy-black like BootstrapMade themes */
+    --foreground: #f8fafc;
+    --muted: #111a22;
+    --border: #1a242f;
+  }
+}
+
+@layer base {
+  body {
+    @apply bg-background text-foreground antialiased transition-colors duration-300;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply font-bold text-secondary dark:text-foreground;
+  }
+}
+
+.section-padding {
+  @apply py-40 px-6 max-w-[1200px] mx-auto;
+}
+
+.section-title {
+  @apply relative pb-5 mb-8;
+}
+
+.section-title h2 {
+  @apply text-3xl font-bold uppercase relative pb-5 mb-5 text-secondary dark:text-foreground;
+}
+
+.section-title h2::after {
+  content: "";
+  @apply absolute block w-12 h-1 bg-primary left-0 bottom-0;
+}
+
+.icon-box {
+  @apply p-8 bg-white dark:bg-muted shadow-lg rounded-xl flex flex-col items-center text-center transition-transform hover:-translate-y-2;
+}
+
+.progress-bar {
+  @apply h-2 bg-gray-200 dark:bg-gray-700 rounded-full overflow-hidden mb-6;
+}
+
+.progress-fill {
+  @apply h-full bg-primary transition-all duration-1000;
+}
+
+.resume-item {
+  @apply pl-5 pb-5 border-l-2 border-primary relative;
+}
+
+.resume-item::before {
+  content: "";
+  @apply absolute w-4 h-4 rounded-full bg-white dark:bg-background border-2 border-primary -left-[9px] top-0;
+}
+
+.btn-primary {
+  @apply px-8 py-3 bg-primary text-white rounded-full font-semibold hover:bg-primary-hover transition-colors shadow-lg cursor-pointer;
+}
+
+.btn-outline {
+  @apply px-8 py-3 border-2 border-primary text-primary rounded-full font-semibold hover:bg-primary hover:text-white transition-all cursor-pointer;
+}
+
+.floating-tag {
+  @apply absolute bg-white/90 dark:bg-black/90 backdrop-blur-sm px-4 py-2 rounded-xl shadow-xl flex items-center gap-2 text-sm font-bold border border-primary/20;
+}
+
+@keyframes noise {
+
+  0%,
+  100% {
+    transform: translate(0, 0);
+  }
+
+  10% {
+    transform: translate(-5%, -5%);
+  }
+
+  20% {
+    transform: translate(-10%, 5%);
+  }
+
+  30% {
+    transform: translate(5%, -10%);
+  }
+
+  40% {
+    transform: translate(-5%, 15%);
+  }
+
+  50% {
+    transform: translate(-10%, 5%);
+  }
+
+  60% {
+    transform: translate(15%, 0);
+  }
+
+  70% {
+    transform: translate(0, 10%);
+  }
+
+  80% {
+    transform: translate(-15%, 0);
+  }
+
+  90% {
+    transform: translate(10%, 5%);
+  }
+}
+
+.noise-overlay {
+  position: fixed;
+  top: -50%;
+  left: -50%;
+  right: -50%;
+  bottom: -50%;
+  width: 200%;
+  height: 200%;
+  background: transparent url('http://assets.iceable.com/img/noise-transparent.png') repeat;
+  animation: noise .2s infinite;
+  opacity: .05;
+  pointer-events: none;
+  z-index: 9999;
+}
+
+.horizontal-scroll-container {
+  overflow-x: auto;
+  scrollbar-width: none;
+  /* Firefox */
+}
+
+.horizontal-scroll-container::-webkit-scrollbar {
+  display: none;
+  /* Chrome, Safari */
+}
+
+html {
+  scroll-behavior: smooth;
+}
