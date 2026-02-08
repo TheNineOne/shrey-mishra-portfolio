@@ -124,10 +124,13 @@ export default function NineOnePage() {
                             style={{ perspective: 1000 }}
                             className="relative border-2 border-white/10 p-2 rounded-3xl group overflow-hidden shadow-[0_0_50px_rgba(220,38,38,0.2)] transition-all duration-300"
                         >
-                            <img
+                            <motion.img
                                 src="/artist-shrey.png"
                                 alt="NineOne Artist"
-                                className="rounded-2xl grayscale hover:grayscale-0 transition-all duration-700 aspect-square object-cover"
+                                initial={{ filter: "grayscale(100%)" }}
+                                animate={{ filter: "grayscale(0%)" }}
+                                transition={{ delay: 1.5, duration: 1 }}
+                                className="rounded-2xl transition-all duration-700 aspect-square object-cover"
                             />
                         </motion.div>
                     </motion.div>
@@ -140,16 +143,28 @@ export default function NineOnePage() {
                             key={link.name}
                             href={link.url}
                             target="_blank"
-                            initial={{ opacity: 0, y: 50 }}
-                            whileInView={{ opacity: 1, y: 0 }}
+                            initial={{ opacity: 0, y: 50, filter: "grayscale(100%)" }}
+                            whileInView={{
+                                opacity: 1,
+                                y: 0,
+                                filter: "grayscale(0%)"
+                            }}
                             viewport={{ once: true }}
-                            transition={{ delay: i * 0.2 + 0.5 }}
+                            transition={{
+                                delay: i * 0.2 + 0.5,
+                                filter: { delay: 1.5 + i * 0.2, duration: 1 }
+                            }}
                             className={`group p-10 bg-black/60 backdrop-blur-md border border-white/10 rounded-[2rem] flex flex-col justify-between transition-all duration-500 ${link.color} hover:text-white hover:border-white/20 shadow-xl`}
                         >
                             <div className="flex justify-between items-start mb-12">
-                                <div className="p-4 bg-white/10 rounded-2xl group-hover:scale-110 transition-transform duration-500">
+                                <motion.div
+                                    initial={{ color: "#ffffff" }}
+                                    animate={{ color: i === 0 ? "#ef4444" : i === 1 ? "#db2777" : "#22c55e" }}
+                                    transition={{ delay: 2 + i * 0.2, duration: 1 }}
+                                    className="p-4 bg-white/10 rounded-2xl group-hover:scale-110 group-hover:bg-white/20 transition-all duration-500"
+                                >
                                     <link.icon className="w-10 h-10" />
-                                </div>
+                                </motion.div>
                                 <ExternalLink className="w-6 h-6 opacity-40 group-hover:opacity-100 translate-x-2 -translate-y-2" />
                             </div>
                             <div className="space-y-2">
