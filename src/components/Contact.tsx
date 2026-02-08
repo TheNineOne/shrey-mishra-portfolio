@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Mail, CheckCircle2, MapPin } from "lucide-react";
+import { Mail, Phone, Github, Linkedin, Send, CheckCircle2, MapPin } from "lucide-react";
 import { useState } from "react";
 
 export default function Contact() {

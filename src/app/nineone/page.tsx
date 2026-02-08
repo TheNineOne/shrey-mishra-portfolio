@@ -3,8 +3,6 @@
 import { motion } from "framer-motion";
 import { Youtube, Instagram, Music2, ExternalLink, Video, PenTool, Mic2 } from "lucide-react";
 import Link from "next/link";
-import Image from "next/image";
-import { useEffect, useState } from "react";
 
 const creativeRoles = ["Artist", "Video Editor", "Writer", "Rapper"];
 
@@ -33,19 +31,6 @@ const socialLinks = [
 ];
 
 export default function NineOnePage() {
-    const [smokeParticles, setSmokeParticles] = useState<any[]>([]);
-
-    useEffect(() => {
-        const particles = [...Array(20)].map((_, i) => ({
-            id: i,
-            initialX: (Math.random() * 120 - 10) + "%",
-            scale: Math.random() * 3 + 1,
-            duration: Math.random() * 8 + 8,
-            delay: Math.random() * 10
-        }));
-        setSmokeParticles(particles);
-    }, []);
-
     return (
         <div className="min-h-screen bg-black text-white selection:bg-red-600 selection:text-white overflow-hidden relative">
             {/* 1. HERO ATMOSPHERE (Background) */}
@@ -59,26 +44,26 @@ export default function NineOnePage() {
 
             {/* Dynamic Smoke Effect Layer */}
             <div className="fixed inset-0 z-[1] pointer-events-none overflow-hidden opacity-50">
-                {smokeParticles.map((p) => (
+                {[...Array(20)].map((_, i) => (
                     <motion.div
-                        key={p.id}
+                        key={i}
                         initial={{
-                            x: p.initialX,
+                            x: (Math.random() * 120 - 10) + "%",
                             y: "120%",
                             opacity: 0,
-                            scale: p.scale
+                            scale: Math.random() * 3 + 1
                         }}
                         animate={{
                             y: "-20%",
                             opacity: [0, 0.5, 0],
-                            x: ["0%", "20%", "-20%", "10%"],
+                            x: ["0%", "20%", "-20%", "10%"], // Horizontal drift
                             rotate: [0, 180, 360]
                         }}
                         transition={{
-                            duration: p.duration,
+                            duration: Math.random() * 8 + 8, // Faster movement
                             repeat: Infinity,
                             ease: "easeInOut",
-                            delay: p.delay
+                            delay: Math.random() * 10
                         }}
                         className="absolute w-[500px] h-[500px] bg-white/10 rounded-full blur-[120px]"
                     />
@@ -150,11 +135,9 @@ export default function NineOnePage() {
                             className="absolute inset-0 bg-red-600/40 blur-[80px] rounded-full"
                         />
                         <div className="relative border-2 border-white/10 p-2 rounded-3xl group overflow-hidden shadow-[0_0_50px_rgba(220,38,38,0.2)]">
-                            <Image
+                            <img
                                 src="/artist-shrey.png"
                                 alt="NineOne Artist"
-                                width={500}
-                                height={500}
                                 className="rounded-2xl grayscale hover:grayscale-0 transition-all duration-1000 aspect-square object-cover"
                             />
                         </div>
