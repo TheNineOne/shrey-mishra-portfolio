@@ -46,7 +46,7 @@
 }
 
 .section-padding {
-  @apply py-40 px-6 max-w-[1200px] mx-auto;
+  @apply py-20 md:py-40 px-6 max-w-[1200px] mx-auto;
 }
 
 .section-title {

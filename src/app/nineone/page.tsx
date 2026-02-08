@@ -79,7 +79,7 @@ export default function NineOnePage() {
                             animate={{ x: 0, opacity: 1, scale: 1 }}
                             transition={{ duration: 1.2, ease: "easeOut" }}
                         >
-                            <h1 className="text-8xl md:text-9xl font-black leading-none uppercase italic stroke-text-red drop-shadow-2xl glitch-active" data-text="THE IX ONE">
+                            <h1 className="text-5xl sm:text-7xl md:text-9xl font-black leading-none uppercase italic stroke-text-red drop-shadow-2xl glitch-active" data-text="THE IX ONE">
                                 THE IX ONE
                             </h1>
                         </motion.div>
